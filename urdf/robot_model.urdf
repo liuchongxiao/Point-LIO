@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="simple_robot">
+
+  <!-- Material Definitions -->
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+
+  <!-- Base link of the robot -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.70 0.65 0.53"/> <!-- Robot dimensions: 70cm x 65cm x 53cm -->
+      </geometry>
+      <origin xyz="0 0 0.265"/> <!-- Center of base_link is 26.5cm above the ground -->
+      <material name="blue"/>
+    </visual>
+    <inertial>
+      <mass value="20.0"/>
+      <origin xyz="0 0 0.265"/>
+      <inertia ixx="0.5" ixy="0.0" ixz="0.0" iyy="0.5" iyz="0.0" izz="0.5"/>
+    </inertial>
+  </link>
+
+  <!-- LiDAR -->
+  <link name="lidar">
+    <visual>
+      <geometry>
+        <cylinder radius="0.055" length="0.08"/> <!-- LiDAR dimensions: diameter 11cm, height 8cm -->
+      </geometry>
+      <origin xyz="0 0 0.53"/> <!-- 53cm height + 24cm above = total 77cm -->
+      <material name="gray"/>
+    </visual>
+  </link>
+  <joint name="lidar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lidar"/>
+    <origin xyz="0 0 0.53"/>
+  </joint>
+
+</robot>

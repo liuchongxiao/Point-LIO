@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="simple_robot">
+  <!-- Material Definitions -->
+  <material name="blue">
+    <color rgba="0 0 1 1"/> <!-- RGBA: Blue color -->
+  </material>
+  <material name="red">
+    <color rgba="1 0 0 1"/> <!-- RGBA: Red color -->
+  </material>
+
+  <!-- Base link of the robot -->
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.65 0.65 0.55"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <!-- LiDAR mounted on the robot -->
+  <link name="velodyne">
+    <visual>
+      <geometry>
+        <cylinder radius="0.055" length="0.08"/>
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <!-- Joint connecting LiDAR to the base link -->
+<joint name="base_to_velodyne" type="fixed">
+    <parent link="base_link"/>
+    <child link="velodyne"/>
+    <origin xyz="0.05 -1.10 0.79" rpy="0 0 0"/> <!-- 根据实际需要调整位置 -->
+</joint>
+
+</robot>
